@@ -42,6 +42,7 @@ namespace :sidekiq do
     task :reload do
       on roles(fetch(:sidekiq_roles)) do
         sudo_if_needed "systemctl restart monit.service"
+        sudo_if_needed "#{fetch(:monit_bin)}"
         sudo_if_needed "#{fetch(:monit_bin)} reload"
       end
     end
